@@ -12,4 +12,7 @@ nothing special
 ## waybar
 
 ## rofi
-install rofi first
+install rofi first using sudo apt install rofi
+
+## xmonad
+place your config in ~/.xmonad and install it using sudo apt install xmonad xterm
