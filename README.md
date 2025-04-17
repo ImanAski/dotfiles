@@ -8,3 +8,8 @@ download the nvim appimage and then move this file to your config location
 
 ## sway
 nothing special
+
+## waybar
+
+## rofi
+install rofi first
