@@ -1,4 +1,5 @@
 (defsrc
+u i o
 caps a s d f h j k l ;)
 
 (defcfg
@@ -11,8 +12,8 @@ caps a s d f h j k l ;)
   hold-time-slow 300)
 
 (defalias
-  layervim (layer-while-held vim)
-  esccaps (tap-hold $tap-time $hold-time esc @layervim)
+  layeralt (layer-while-held alt)
+  esccaps (tap-hold $tap-time $hold-time esc @layeralt)
   a (multi f24 (tap-hold $tap-time $hold-time a lmet))
   s (multi f24 (tap-hold $tap-time $hold-time s lalt))
   d (multi f24 (tap-hold $tap-time $hold-time d lsft))
@@ -24,7 +25,9 @@ caps a s d f h j k l ;)
 
 
 (deflayer base
+  u i o
   @esccaps @a @s @d @f h @j @k @l @;)
 
-(deflayer vim
+(deflayer alt
+  bspc tab ret
   XX XX XX XX XX left down up right XX)
