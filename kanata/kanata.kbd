@@ -1,0 +1,30 @@
+(defsrc
+caps a s d f h j k l ;)
+
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defvar
+  tap-time 200 
+  hold-time 200
+  hold-time-slow 300)
+
+(defalias
+  layervim (layer-while-held vim)
+  esccaps (tap-hold $tap-time $hold-time esc @layervim)
+  a (multi f24 (tap-hold $tap-time $hold-time a lmet))
+  s (multi f24 (tap-hold $tap-time $hold-time s lalt))
+  d (multi f24 (tap-hold $tap-time $hold-time d lsft))
+  f (multi f24 (tap-hold $tap-time $hold-time f lctl))
+  j (multi f24 (tap-hold $tap-time $hold-time j rctl))
+  k (multi f24 (tap-hold $tap-time $hold-time k rsft))
+  l (multi f24 (tap-hold $tap-time $hold-time l ralt))
+  ; (multi f24 (tap-hold $tap-time $hold-time ; rmet)))
+
+
+(deflayer base
+  @esccaps @a @s @d @f h @j @k @l @;)
+
+(deflayer vim
+  XX XX XX XX XX left down up right XX)
