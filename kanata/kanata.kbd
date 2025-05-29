@@ -1,7 +1,9 @@
 (defsrc
-u i o p [ ]
-caps a s d f h j k l ;
-v)
+q w e r t u i o p [ ]
+caps a s d f g h j k l ;
+z x c v b m , .
+spc
+)
 
 (defcfg
   process-unmapped-keys yes
@@ -14,8 +16,14 @@ v)
 
 (defalias
   layeralt (layer-while-held alt)
+  layernums (layer-while-held nums)
+  layersigns (layer-while-held signs)
+  layercomatch (layer-while-held comatch)
   esccaps (tap-hold $tap-time $hold-time esc caps)
-  v (tap-hold $tap-time $hold-time v @layeralt)
+  spc (tap-hold $tap-time $hold-time spc @layeralt)
+  v (tap-hold $tap-time $hold-time v @layernums)
+  i (tap-hold $tap-time $hold-time i @layersigns)
+  m (tap-hold $tap-time $hold-time m @layercomatch)
   a (multi f24 (tap-hold $tap-time $hold-time a lmet))
   s (multi f24 (tap-hold $tap-time $hold-time s lalt))
   d (multi f24 (tap-hold $tap-time $hold-time d lsft))
@@ -27,11 +35,31 @@ v)
 
 
 (deflayer base
-  u i o p [ ]
-  @esccaps @a @s @d @f h @j @k @l @;
-  @v)
+  q w e r t u @i o p [ ]
+  @esccaps @a @s @d @f g h @j @k @l @;
+  z x c @v b @m , .
+  @spc)
+
+(deflayer signs
+  S-1 S-2 S-3 S-4 \ XX XX XX XX XX XX
+  XX S-5 S-6 S-7 S-8 S-\ XX XX XX XX XX
+  - = S-- S-= S-` XX XX XX
+  XX)
+
+(deflayer comatch
+  XX XX S-9 S-0 XX XX XX XX XX XX XX
+  XX XX XX S-[ S-] XX XX XX XX XX XX
+  XX XX [ ] XX XX XX XX
+  XX)
+
+(deflayer nums
+  XX XX XX XX XX 1 2 3 0 XX XX
+  XX XX XX XX XX XX XX 4 5 6 XX
+  XX XX XX XX XX 7 8 9
+  XX)
 
 (deflayer alt
-  bspc tab ret lctl lalt lsft
-  XX XX XX XX XX left down up right XX
+  XX XX XX XX XX bspc tab ret lctl lalt lsft
+  XX XX XX XX XX XX left down up right XX
+  XX XX XX XX XX XX XX XX
   XX)

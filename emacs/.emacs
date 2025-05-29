@@ -28,25 +28,41 @@
 
   (global-hl-line-mode 1)
 
+  (require 'org)
+
   (setq org-todo-keywords
-		'((sequence "TODO" "FEEDBACK" "CANCELED" "DONE" "|" "DELEGATED" "VERIFY")))
+      '((sequence "TODO(t)" "NEXT(n)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
 
   (setq org-todo-keyword-faces
 		'(("TODO" . org-warning)
 		  ("DONE" . "green")
-		  ("DELEGATED" . "yellow")
-		  ("CANCELED" . (:foreground "blue"))
-		  ("VERIFY" . "violet")))
+		  ("NEXT" . "orange")
+		  ("WAITING" . "cyan")
+		  ("CANCELED" . (:foreground "blue"))))
 
   (setq org-directory "~/org")
-  (setq org-agenda-files (list "~/org/work.org"
-							   "~/org/life.org"))
+  (setq org-default-notes-file (concat org-directory "/tasks.org"))
+  (setq org-agenda-files (list org-directory))
 
-  (require 'org)
-  (define-key global-map "\C-ca" 'org-agenda)
-  (define-key global-map "\C-cl" 'org-store-link)
+  (add-to-list 'default-frame-alist '(alpha-background . 90))
   
+
+
+  ;; Capture templates for quick task entry
+(setq org-capture-templates
+      '(("t" "Todo" entry (file org-default-notes-file)
+         "* TODO %?\n  %i\n  %a")
+        ("n" "Next Action" entry (file org-default-notes-file)
+         "* NEXT %?\n  %i\n  %a")))
+  
+  (global-set-key (kbd "C-c a") 'org-agenda)
+  (global-set-key (kbd "C-c c") 'org-capture)
+  (global-set-key (kbd "C-c l") 'org-store-link)
   (modify-coding-system-alist 'file "" 'utf-8)
+
+  (setq org-agenda-start-with-log-mode t)
+  (setq org-log-done 'time)
+  (add-to-list 'org-modules 'org-habit)
 
   (add-hook 'after-init-hook
 	    (lambda ()
@@ -113,6 +129,11 @@
   ;; Load the Catppuccin theme without prompting for confirmation.
   (load-theme 'catppuccin :no-confirm))
 
+;; (use-package evangelion-theme
+;;   :custom
+;;   ;; `nil' to disable background for comments
+;;   (evangelion-comment-background-enabled . t)
+;;   :config (load-theme 'evangelion t))
 
 ;; evil
 

@@ -4,4 +4,5 @@
 local map = vim.keymap.set
 
 map('n', ';', ':')
+map('i', 'jk', '<Esc>')
 map('n', '<leader>oo', 'o<Esc>', { desc = "Insert a new line below"})
